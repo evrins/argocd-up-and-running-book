@@ -21,7 +21,7 @@ spec:
         tier: database
     spec:
       containers:
-      - image: mysql:8
+      - image: mysql:9
         name: mysql
         env:
         - name: MYSQL_DATABASE
