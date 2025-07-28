@@ -1,5 +1,8 @@
 ---
 
+strategy:
+  type: Recreate
+
 gitea:
   gitea:
     admin:

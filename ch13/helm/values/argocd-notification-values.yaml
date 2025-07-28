@@ -1,7 +1,7 @@
 notifications:
   secret:
     items:
-      mattermost-token: replaceme
+      mattermost-token: wbbbpaqxpig99mwbw7pywxouha
   notifiers:
     service.mattermost: |
       apiURL: http://mattermost.mattermost-operator.svc.cluster.local:8065

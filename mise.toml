@@ -1,0 +1,8 @@
+[tasks.reset-cluster]
+run = [
+    "kind delete cluster",
+    "HTTPS_PROXY=http://host.docker.internal:7890 kind create cluster --config kind-config.yaml",
+    "helm -n ingress-nginx install ingress-nginx ingress-nginx/ingress-nginx --create-namespace -f ch09/helm/values/values-ingress-nginx-ssl-passthrough.yaml",
+    "helm upgrade -i argo-cd argo/argo-cd -n argocd --create-namespace -f ch09/helm/values/values-argocd-secure.yaml",
+    "helm install cert-manager jetstack/cert-manager -n cert-manager --create-namespace --set crds.enabled=true"
+]

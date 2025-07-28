@@ -1,0 +1,32 @@
+# gitea-selfsigned-certificate.yaml
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: gitea-server-certificate
+  namespace: gitea # <-- Must be the gitea namespace
+spec:
+  # The secret name gitea expects
+  secretName: git-server-certificate
+
+  commonName: git.upandrunning.local # <-- Replace with your internal FQDN
+  # The domain name for your gitea instance
+  dnsNames:
+  - git.upandrunning.local # <-- Replace with your internal FQDN
+
+  subject:
+    organizations:
+      - "My Awesome Company"
+    countries:
+      - "US"
+    organizationalUnits:
+      - "Engineering"
+      - "Platform Team"
+    localities:
+      - "San Francisco"
+    provinces:
+      - "California"
+
+  # Reference the self-signed issuer
+  issuerRef:
+    name: selfsigned-cluster-issuer # <-- The issuer we just created
+    kind: ClusterIssuer

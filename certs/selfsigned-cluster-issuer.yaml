@@ -1,0 +1,7 @@
+# selfsigned-cluster-issuer.yaml
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer # Use Issuer for a namespaced version
+metadata:
+  name: selfsigned-cluster-issuer
+spec:
+  selfSigned: {} # That's it! This is all you need for a self-signed issuer.

@@ -1,0 +1,32 @@
+# argocd-selfsigned-certificate.yaml
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: argocd-server-certificate
+  namespace: argocd # <-- Must be the argocd namespace
+spec:
+  # The secret name Argo CD expects
+  secretName: argocd-server-tls
+
+  commonName: argocd.upandrunning.local # <-- Replace with your internal FQDN
+  # The domain name for your Argo CD instance
+  dnsNames:
+  - argocd.upandrunning.local # <-- Replace with your internal FQDN
+
+  subject:
+    organizations:
+      - "My Awesome Company"
+    countries:
+      - "US"
+    organizationalUnits:
+      - "Engineering"
+      - "Platform Team"
+    localities:
+      - "San Francisco"
+    provinces:
+      - "California"
+
+  # Reference the self-signed issuer
+  issuerRef:
+    name: selfsigned-cluster-issuer # <-- The issuer we just created
+    kind: ClusterIssuer
